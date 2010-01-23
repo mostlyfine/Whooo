@@ -1,0 +1,25 @@
+!!! XML
+!!!
+%html{html_attrs}
+  %head
+    %meta{'http-equiv' => 'content-type'       , :content => 'text/html; charset=utf-8'}
+    %meta{'http-equiv' => 'content-style-type' , :content => 'text/css; charset=utf-8'}
+    %meta{'http-equiv' => 'content-script-type', :content => 'text/javascript'}
+    %title= "Whooo?"
+    %link{:rel => 'stylesheet', :type => 'text/css', :href => '/stylesheets/easy.css'}
+    %script{:type => 'text/javascript', :src => '/javascripts/jquery.js'}
+    %script{:type => 'text/javascript', :src => '/javascripts/jquery.jfeed.js'}
+    %script{:type => 'text/javascript', :src => '/javascripts/easy.js'}
+    %script{:type => 'text/javascript', :src => '/javascripts/application.js'}
+  %body
+    %div#container
+      %div#header
+        %h2 Whooo?
+        %form{:method => 'GET', :action => '#'}
+          What kind of person?
+          %input{:id => 'url', :type => 'text', :name => 'url'}
+          %input{:id => 'load', :type => 'button', :value => 'check'}
+      %div.content
+        %table#article
+      %div#footer
+
