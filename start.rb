@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'open-uri'
-require 'nokogiri'
+# require 'nokogiri'
 
 sites = {
   'flickr' => 'http://www.flickr.com/photos/',
