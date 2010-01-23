@@ -1,11 +1,7 @@
 require 'sinatra'
 require 'open-uri'
+require 'haml'
 # require 'nokogiri'
-
-sites = {
-  'flickr' => 'http://www.flickr.com/photos/',
-  'twitter' => 'http://twitter.com/'
-}
 
 before do
   content_type 'text/html', :charset => 'utf-8'
@@ -20,9 +16,8 @@ get '/rss' do
   open(params[:url]) if params[:url]
 end
 
-get '/:site/:id' do
-  url = sites[params[:site]] + params[:id]
-  body = Nokogiri::HTML.parse(open(url).read)
+get '/fetch' do
+  body = Nokogiri::HTML.parse(open(params[:url]).read)
   content_type 'application/rss+xml'
-  open(body.search('//link[@type=\'application/rss+xml\']').first.get_attribute('href'))
+  open(body.search('//link[@type=\'application/rss+xml\' or @type=\'application/atom+xml\']').first.get_attribute('href'))
 end
