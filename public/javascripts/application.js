@@ -43,6 +43,7 @@ function rssLoad() {
 }
 
 function showArticle(feed) {
+  if(feed.items.length == 0) { return; }
   $("#shortcut").append("<li><a class='jump' href='#" + feed.title + "'>" + feed.title + "</a></li>");
   var buf = "<h1 id='" + feed.title + "'>" + feed.title + "</h1><ul>";
   buf += "<p><a href='" + feed.link + "'>" + feed.link + "</a></p>";
