@@ -12,6 +12,13 @@
     %script{:type => 'text/javascript', :src => '/javascripts/easy.js'}
     %script{:type => 'text/javascript', :src => '/javascripts/jquery.jfeed.js'}
     %script{:type => 'text/javascript', :src => '/javascripts/application.js'}
+    :javascript
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+      try {
+        var pageTracker = _gat._getTracker("UA-9445560-2");
+        pageTracker._trackPageview();
+      } catch(err) {}
   %body
     %div#container
       %div#header
