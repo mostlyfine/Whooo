@@ -7,19 +7,24 @@
     %meta{'http-equiv' => 'content-script-type', :content => 'text/javascript'}
     %title= "Whooo?"
     %link{:rel => 'stylesheet', :type => 'text/css', :href => '/stylesheets/easy.css'}
+    %link{:rel => 'shortcut icon', :href => '/favicon.ico'}
     %script{:type => 'text/javascript', :src => '/javascripts/jquery.js'}
-    %script{:type => 'text/javascript', :src => '/javascripts/jquery.jfeed.js'}
     %script{:type => 'text/javascript', :src => '/javascripts/easy.js'}
+    %script{:type => 'text/javascript', :src => '/javascripts/jquery.jfeed.js'}
     %script{:type => 'text/javascript', :src => '/javascripts/application.js'}
   %body
     %div#container
       %div#header
-        %h2 Whooo?
-        %form{:method => 'GET', :action => '#'}
+        %h1#top
+          %a{:href => '/'} Whooo?
+        %form{:method => 'GET', :action => '/'}
           What kind of person?
-          %input{:id => 'url', :type => 'text', :name => 'url'}
-          %input{:id => 'load', :type => 'button', :value => 'check'}
+          %input{:id => 'username', :type => 'text', :name => 'username', :value => params[:username]}
+          %input{:type => 'submit', :value => 'check'}
       %div.content
-        %table#article
+        %div.main#article
+        %div.secondary
+          %ul#shortcut
       %div#footer
+        &copy; Copyright 2010 Whooo? powered by Sinatra made with Easy
 

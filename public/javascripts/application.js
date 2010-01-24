@@ -1,37 +1,61 @@
 var sites = [
-"/rss?url=http://friendfeed.com/_ID_?format=atom",
-"/rss?url=http://_ID_.tumblr.com/rss",
-"/rss?url=http://feeds.delicious.com/v2/rss/_ID_?count=15",
-"/rss?url=http://b.hatena.ne.jp/_ID_/rss",
-"/rss?url=http://picasaweb.google.com/data/feed/base/user/_ID_?alt=rss&kind=album&hl=ja&access=public",
-"/rss?url=http://gdata.youtube.com/feeds/base/users/_ID_/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile",
-"/rss?url=http://ws.audioscrobbler.com/1.0/user/_ID_/recenttracks.rss",
-"/rss?url=http://www.slideshare.net/rss/user/_ID_",
-"/rss?url=http://brightkite.com/people/_ID_/objects.rss",
-"/rss?url=http://d.hatena.ne.jp/_ID_/rss",
-"/rss?url=http://rssblog.ameba.jp/_ID_/rss20.xml",
-"/rss?url=http://api.wassr.jp/user_timeline.rss?id=_ID_",
-"/rss?url=http://_ID_.blogspot.com/feeds/posts/default?alt=rss",
-"/rss?url=http://mediamarker.net/u/_ID_/rss",
-"/rss?url=http://blog.livedoor.jp/_ID_/index.rdf",
-"/fetch?url=http://www.flickr.com/photos/_ID_",
-"/fetch?url=http://twitter.com/_ID_"
+"/rss?url=http://friendfeed.com/__ID__?format=atom",
+"/rss?url=http://__ID__.tumblr.com/rss",
+"/rss?url=http://feeds.delicious.com/v2/rss/__ID__?count=15",
+"/rss?url=http://github.com/__ID__.atom",
+"/rss?url=http://b.hatena.ne.jp/__ID__/rss",
+"/rss?url=http://clip.livedoor.com/rss/clips/__ID__",
+"/rss?url=http://picasaweb.google.com/data/feed/base/user/__ID__?alt=rss&kind=album&hl=ja&access=public",
+"/rss?url=http://gdata.youtube.com/feeds/base/users/__ID__/uploads?alt=rss&v=2&orderby=published&client=ytapi-youtube-profile",
+"/rss?url=http://ws.audioscrobbler.com/1.0/user/__ID__/recenttracks.rss",
+"/rss?url=http://www.slideshare.net/rss/user/__ID__",
+"/rss?url=http://kskl.jp/users/__ID__.rss",
+"/rss?url=http://www.rememberthemilk.com/atom/__ID__",
+"/rss?url=http://brightkite.com/people/__ID__/objects.rss",
+"/rss?url=http://api.wassr.jp/user_timeline.rss?id=__ID__",
+"/rss?url=http://mediamarker.net/u/__ID__/rss",
+"/rss?url=http://d.hatena.ne.jp/__ID__/rss",
+"/rss?url=http://rssblog.ameba.jp/__ID__/rss20.xml",
+"/rss?url=http://__ID__.blogspot.com/feeds/posts/default?alt=rss",
+"/rss?url=http://blog.livedoor.jp/__ID__/index.rdf",
+"/rss?url=http://__ID__.cocolog-nifty.com/blog/atom.xml",
+"/fetch?url=http://www.flickr.com/photos/__ID__",
+"/fetch?url=http://twitter.com/__ID__"
 ];
 
 $(function() {
-  $("#load").click(function(e) {
-    $.each(sites, function() {
-      var rss_url = this.replace("_ID_", $("#url").val());
-      $.getFeed({url: rss_url, success: showArticle});
-    });
-  });
+  $.easy.navigation();
+  $.easy.tooltip();
+  $.easy.popup();
+  $.easy.external();
+  $.easy.rotate();
+  $.easy.forms();
+  $.easy.showhide();
+  $.easy.jump();
+  if($("#username").val()) { rssLoad(); }
 })
 
-function showArticle(feed) {
-  var buf = "";
-  $.each(feed.items, function() {
-    buf += "<tr><td><a href='" + feed.link + "'>" + feed.title + "</a></td><td><a href='" + this.link + "'>" + this.title + "</a></td><td>" + this.updated + "</td></tr>";
-    buf += "<tr><td colspan='3'>" + this.description + "</td></tr>";
+function rssLoad() {
+  $.each(sites, function() {
+    var rss_url = this.replace("__ID__", $("#username").val());
+    $.getFeed({url: rss_url, success: showArticle});
   });
+}
+
+function showArticle(feed) {
+  $("#shortcut").append("<li><a class='jump' href='#" + feed.title + "'>" + feed.title + "</a></li>");
+  var buf = "<h1 id='" + feed.title + "'>" + feed.title + "</h1><ul>";
+  buf += "<p><a href='" + feed.link + "'>" + feed.link + "</a></p>";
+  $.each(feed.items, function() {
+    buf += "<li class='list'>";
+    buf += "<div class='title'>" + this.title + "</div>";
+    buf += "<div class='link'>";
+    buf += "<a href='" + this.link + "'>" + this.link + "</a>";
+    buf += "</div>";
+  buf += "<div class='desctiption'>" + this.description + "</div>";
+    buf += "</li>";
+  });
+  buf += "</ul>";
+  buf += "<p><a href='#top'>▲top</a></p><hr/>";
   $("#article").append(buf);
 }
