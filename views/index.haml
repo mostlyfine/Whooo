@@ -32,6 +32,11 @@
         %div.main#article
         %div.secondary
           %ul#shortcut
+            - if params[:username]
+              %li
+                %a{:href => "http://iddy.jp/profile/#{params[:username]}"} iddy
+              %li
+                %a{:href => "http://spysee.jp/q/#{params[:username]}"} spysee
       %div#footer
         &copy; Copyright 2010 Whooo? powered by Sinatra made with Easy
 
