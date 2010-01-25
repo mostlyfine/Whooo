@@ -1,0 +1,28 @@
+!!! XML
+!!!
+%html{html_attrs}
+  %head
+    %meta{'http-equiv' => 'content-type'       , :content => 'text/html; charset=utf-8'}
+    %meta{'http-equiv' => 'content-style-type' , :content => 'text/css; charset=utf-8'}
+    %meta{'http-equiv' => 'content-script-type', :content => 'text/javascript'}
+    %title= "Whooo?"
+    %link{:rel => 'stylesheet', :type => 'text/css', :href => '/stylesheets/easy.css'}
+    %link{:rel => 'shortcut icon', :href => '/favicon.ico'}
+    %script{:type => 'text/javascript', :src => '/javascripts/jquery.js'}
+    %script{:type => 'text/javascript', :src => '/javascripts/easy.js'}
+    %script{:type => 'text/javascript', :src => '/javascripts/jquery.jfeed.js'}
+    %script{:type => 'text/javascript', :src => '/javascripts/application.js'}
+    - ENV['GOOGLE_ANALTICS_ID'] = 'UA-9445560-2'
+    - if ENV['GOOGLE_ANALYTICS_ID']
+      :javascript
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        try {
+          var pageTracker = _gat._getTracker("#{ENV['GOOGLE_ANALYTICS_ID']}");
+          pageTracker._trackPageview();
+        } catch(err) {}
+  %body
+    %div#container
+      != yield
+    %div#footer
+      &copy; Copyright 2010 Whooo? powered by Sinatra made with Easy
