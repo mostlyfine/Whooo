@@ -1,10 +1,7 @@
 require 'sinatra'
 require 'open-uri'
 require 'haml'
-
-configure :development do
-  require 'nokogiri'
-end
+require 'nokogiri'
 
 before do
   content_type 'text/html', :charset => 'utf-8'
