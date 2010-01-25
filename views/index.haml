@@ -1,16 +1,16 @@
-  %div#header
-    %h1#top
-      %a{:href => '/'} Whooo?
-    %form{:method => 'GET', :action => '/'}
-      What kind of person?
-      %input{:id => 'username', :type => 'text', :name => 'username', :value => params[:username]}
-      %input{:type => 'submit', :value => 'check'}
-  %div.content
-    %div.main#article
-    %div.secondary
-      %ul#shortcut
-        - if params[:username]
-          %li
-            %a{:class => 'popup', :href => "http://iddy.jp/profile/#{params[:username]}"} iddy
-          %li
-            %a{:class => 'popup', :href => "http://spysee.jp/q/#{params[:username]}"} spysee
+%div#header
+  %h1#top
+    %a{:href => '/'} Whooo?
+  %form{:method => 'GET', :action => '/'}
+    What kind of person?
+    %input{:id => 'username', :type => 'text', :name => 'username', :value => params[:username]}
+    %input{:type => 'submit', :value => 'check'}
+%div.content
+  %div.main#article
+  %div.secondary
+    %ul#shortcut
+      - if params[:username]
+        %li
+          %a{:class => 'popup', :href => "http://iddy.jp/profile/#{params[:username]}"} iddy
+        %li
+          %a{:class => 'popup', :href => "http://spysee.jp/q/#{params[:username]}"} spysee
