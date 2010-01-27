@@ -21,6 +21,7 @@ var sites = [
 "/rss?url=http://__ID__.cocolog-nifty.com/blog/atom.xml",
 "/rss?url=http://u.tabelog.com/rss2/rst_rvwr_rvwlst?msu=__ID__",
 "/rss?url=http://booklog.jp/users/__ID__/feed",
+"/rss?url=http://feeds.pandora.com/feeds/people/__ID__/stations.xml",
 "/fetch?url=http://www.flickr.com/photos/__ID__",
 "/fetch?url=http://twitter.com/__ID__"
 ];
