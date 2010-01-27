@@ -9,8 +9,6 @@
   %div.main#article
   %div.secondary
     %ul#shortcut
-      - if params[:username]
-        %li
-          %a{:class => 'popup', :href => "http://iddy.jp/profile/#{params[:username]}"} iddy
-        %li
-          %a{:class => 'popup', :href => "http://spysee.jp/q/#{params[:username]}"} spysee
+      %p
+        %img{:src => @icon_url}
+        =@name

@@ -19,6 +19,13 @@ get '/fetch' do
 end
 
 get '/:username' do
+  begin
+    content = Nokogiri::XML.parse(open("http://www.twitter.com/users/show.xml?screen_name=#{params[:username]}"))
+    @name = content.xpath("//user/name").text
+    @icon_url = content.xpath("//user/profile_image_url").text
+  rescue
+  end
+
   haml :index
 end
 
