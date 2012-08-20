@@ -8,14 +8,20 @@ before do
 end
 
 get '/rss' do
-  content_type 'application/rss+xml'
-  open(params[:url])
+  begin
+    content_type 'application/rss+xml'
+    open(params[:url])
+  rescue
+  end
 end
 
 get '/fetch' do
-  body = Nokogiri::HTML.parse(open(params[:url]).read)
-  url = body.search('//link[@type=\'application/rss+xml\' or @type=\'application/atom+xml\']').first.get_attribute('href')
-  redirect "/rss?url=#{url}"
+  begin
+    body = Nokogiri::HTML.parse(open(params[:url]).read)
+    url = body.search('//link[@type=\'application/rss+xml\' or @type=\'application/atom+xml\']').first.get_attribute('href')
+    redirect "/rss?url=#{url}"
+  rescue
+  end
 end
 
 get '/:username' do
