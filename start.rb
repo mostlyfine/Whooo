@@ -35,6 +35,17 @@ get '/:username' do
   haml :index
 end
 
+get '/twitter/:username.rss' do
+  begin
+    content = Nokogiri::XML.parse(open("http://twitter.com/users/show/#{params[:username]}.xml"))
+    id = content.xpath("//user/id").text
+    url = "http://twitter.com/statuses/user_timeline/#{id}.rss"
+    content_type 'application/rss+xml'
+    open url
+  rescue
+  end
+end
+
 get '/' do
   redirect "/#{params[:username]}" if params[:username]
   haml :index

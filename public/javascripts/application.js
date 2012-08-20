@@ -23,7 +23,7 @@ var sites = [
 "/rss?url=http://booklog.jp/users/__ID__/feed",
 "/rss?url=http://feeds.pandora.com/feeds/people/__ID__/stations.xml",
 "/fetch?url=http://www.flickr.com/photos/__ID__",
-"/fetch?url=http://twitter.com/__ID__"
+"/twitter/__ID__.rss"
 ];
 
 $(function() {
